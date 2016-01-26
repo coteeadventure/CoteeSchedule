@@ -1,0 +1,2 @@
+module ScheduledCruisesHelper
+end
