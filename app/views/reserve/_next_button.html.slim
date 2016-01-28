@@ -1,0 +1,13 @@
+- if @wicked_step == :customer
+  - button_text = 'Confirm Your Reservation'
+- else
+  - button_text = 'Next'
+
+div.row
+  div.col-sm-3
+  div.col-sm-9
+    = submit_tag button_text, class: 'btn btn-primary'
+    - if @wicked_step != :passengers
+      = link_to 'Start Over', reset_reservation_path, class: 'btn btn-link'
+
+br

@@ -1,0 +1,18 @@
+/= render 'shared/collection_radio_group', locals: { object: @scheduled_cruise, property: cruise_type_id', collection: CruiseType.all, key: :id, value: :name }
+
+/ OLD SYNTAX:
+/= f.collection_select :cruise_type_id, CruiseType.all, :id, :name
+
+- if locals[:collection].count > 0
+  - selected_key = locals[:object][locals[:property]]
+  - class_name = locals[:object].class.to_s.underscore
+  
+  div.btn-group-vertical.align-left data-toggle="buttons"
+  
+    - locals[:collection].each do |c|
+      - c_key = c.public_send locals[:key]
+      - c_value = c.public_send locals[:value]
+      
+      label class="btn btn-default #{selected_key==c_key ? ' active' : ''}"
+        input type="radio" name="#{class_name}[#{locals[:property]}]" id="#{class_name}_#{locals[:property]}" value="#{c_key}"
+          = c_value

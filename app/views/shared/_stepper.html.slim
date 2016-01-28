@@ -1,0 +1,20 @@
+/= render 'shared/text_field', locals: { object: @reservation, property: :name, label: 'Your Name' }
+
+- class_name = locals[:object].class.to_s.underscore
+- html_id_name = "#{class_name}_#{locals[:property]}"
+- label = locals[:label] || locals[:property].to_s.titlecase
+- current_value = locals[:object].public_send locals[:property]
+
+div class="form-group"
+  label class="col-sm-3 control-label" for="#{html_id_name}"
+    = label
+  div class="col-sm-9"
+    input id="#{html_id_name}" class="form-control stepper" type="text" name="#{class_name}[#{locals[:property]}]" value="#{current_value}" placeholder="#{locals[:placeholder]}"
+    
+    javascript:
+      $("input[id='#{html_id_name}']").TouchSpin({
+          min: 0,
+          max: 9,
+          step: 1,
+          decimals: 0
+      });

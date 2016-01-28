@@ -1,0 +1,15 @@
+h3 How can we reach you?
+
+= render 'shared/text_field', locals: { object: @reservation, property: :name, label: 'Your Name', placeholder: 'Jane Doe' }
+    
+= render 'shared/text_field', locals: { object: @reservation, property: :email, placeholder: 'jane@example.com' }
+
+= render 'shared/text_field', locals: { object: @reservation, property: :phone, label: 'Phone Number', placeholder: '727 555 1212' }
+
+= render 'shared/text_area', locals: { object: @reservation, property: :address_line_1, label: 'Billing Address', placeholder: '2020 Main St, New Port Richey, FL' }
+
+hr
+          
+= render 'shared/text_field', locals: { object: @reservation, property: :coupon_code }
+
+= render 'shared/text_area', locals: { object: @reservation, property: :additional_information, label: 'Additional Info' }

@@ -1,0 +1,10 @@
+- if @reservation.errors.any?
+  br
+  
+  div#error_explanation.panel.panel-danger
+    div.panel-heading
+      h3.panel-title This couldn’t be saved because…
+    div.panel-body
+      ul
+        - @reservation.errors.each do |field, msg|
+          li = msg

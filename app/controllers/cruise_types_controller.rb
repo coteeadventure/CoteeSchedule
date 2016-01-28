@@ -1,5 +1,7 @@
 class CruiseTypesController < ApplicationController
   
+  before_action :authenticate_user!
+  
   def index
     @cruise_types = CruiseType.all
   end
@@ -38,7 +40,8 @@ class CruiseTypesController < ApplicationController
   
   def destroy
     @cruise_type = CruiseType.find(params[:id])
-    @cruise_type.destroy
+    @cruise_type.status = 'deleted'
+    @cruise_type.save
  
     redirect_to cruise_types_path
   end
@@ -47,7 +50,7 @@ class CruiseTypesController < ApplicationController
 private
 
   def cruise_type_params
-      params.require(:cruise_type).permit(:name, :capacity)
-    end
+    params.require(:cruise_type).permit(:name, :capacity)
+  end
     
 end

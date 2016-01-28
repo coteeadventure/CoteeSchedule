@@ -1,0 +1,9 @@
+h3 How many passengers will there be?
+
+= render 'shared/stepper', locals: { object: @reservation, property: :passengers_adults, label: 'Adults (13–64)' }      
+
+= render 'shared/stepper', locals: { object: @reservation, property: :passengers_seniors, label: 'Seniors (65+)' }      
+
+= render 'shared/stepper', locals: { object: @reservation, property: :passengers_kids, label: 'Kids (3–12)' }      
+
+= render 'shared/stepper', locals: { object: @reservation, property: :passengers_babies, label: 'Babies (0–2)' }

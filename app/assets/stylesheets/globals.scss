@@ -1,0 +1,54 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+table.first-col-right th:first-child,
+table.first-col-right td:first-child {
+  text-align: right;
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  color: #5e5e5e;
+  text-align: center;
+  padding: 5px;
+}
+
+.form-medium {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.stepper {
+  text-align: center;
+  max-width: 50px;
+}
+
+.field_with_errors label {
+	color: red;
+}
+
+table.table.table-hover tr:hover th {
+	background-color: white;
+}
+
+.table-min-width {
+   width: auto !important;
+}
+
+.align-left, .align-left * {
+  text-align: left !important;
+}
+
+.align-right, .align-right * {
+  text-align: right !important;
+}
+
+label.col-sm-2 {
+  text-align: right;
+}
+
+.input-group-btn {
+  float: left;
+}
