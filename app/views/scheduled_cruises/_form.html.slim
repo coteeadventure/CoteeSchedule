@@ -1,0 +1,53 @@
+/ Editing an existing object
+- if @scheduled_cruise.id
+  - obj_exists = true
+  - obj_path = scheduled_cruise_path(@scheduled_cruise)
+  - obj_method = :patch
+  - obj_button = 'Save Changes'
+/ Creating a new object
+- else
+  - obj_path = scheduled_cruises_path
+  - obj_method = :post
+  - obj_button = 'Schedule Cruise'
+  
+= form_for :scheduled_cruise, url: obj_path, method: obj_method, html:{class:'form-horizontal'} do |f|
+  
+  - if @scheduled_cruise.errors.any?
+    div#error_explanation.panel.panel-danger
+      div.panel-heading
+        h3.panel-title This scheduled cruise couldn’t be saved because…
+      div.panel-body
+        ul
+          - @scheduled_cruise.errors.full_messages.each do |msg|
+            li = msg
+    br
+  
+  / div class="form-group"
+  /   = f.label :cruise_type_id, 'Cruise Type', class: 'col-sm-2 control-label'
+  /   div class="col-sm-10"
+  /     = f.collection_select :cruise_type_id, CruiseType.all, :id, :name
+      
+  div class="form-group"
+    = f.label :cruise_type_id, 'Cruise Type', class: 'col-sm-2 control-label'
+    div class="col-sm-10"
+      = render 'shared/collection_radio_group', locals: { object: @scheduled_cruise, property: :cruise_type_id, collection: CruiseType.all, key: :id, value: :name }
+
+  div class="form-group"
+    = f.label :datetime, 'Date and Time', class: 'col-sm-2 control-label'
+    div class="col-sm-10"
+      = f.text_field :datetime, class: 'form-control'
+      
+  div class="row"
+    div class="col-sm-2"
+    div class="col-sm-10"
+        = f.submit obj_button, class: 'btn btn-primary'
+        = ' '
+        
+        - if obj_exists
+          = link_to 'Cancel This Cruise', scheduled_cruise_path(@scheduled_cruise),
+                          method: :delete,
+                          data: { confirm: 'Are you sure you want to cancel this scheduled cruise?' },
+                          class: 'btn btn-danger'
+          = ' '
+          
+        = link_to 'Go Back', scheduled_cruises_path, class: 'btn btn-link'

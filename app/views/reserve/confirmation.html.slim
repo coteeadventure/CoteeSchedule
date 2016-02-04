@@ -1,0 +1,12 @@
+= render 'nav_bar'
+
+h3 Thank you!
+
+p Your reservation is confirmed.
+
+p
+  span Your confirmation number is 
+  strong = @reservation.confirmation_number
+  span .
+
+= render 'debug'

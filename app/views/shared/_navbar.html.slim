@@ -1,0 +1,23 @@
+nav.navbar.navbar-default
+  div.container-fluid
+  
+    div.navbar-header
+      a.navbar-brand href="/" Cotee Adventure—Scheduling
+    
+    ul.nav.navbar-nav
+      li class="#{ 'active' if params[:controller] == 'reservations' and params[:action] == 'new' }"
+        = link_to 'Make a Reservation', reset_reservation_path
+    
+    - if user_signed_in?
+      ul.nav.navbar-nav.navbar-right
+        li class="#{ 'active' if params[:controller] == 'reservations' and params[:action] != 'new' }"
+          a href="#{reservations_path}" Reservations
+          
+        li class="#{ 'active' if params[:controller] == 'scheduled_cruises' }"
+          a href="#{scheduled_cruises_path}" Scheduled Cruises
+          
+        li class="#{ 'active' if params[:controller] == 'cruise_types' }"
+          a href="#{cruise_types_path}" Types of Cruise    
+                
+        li
+          = link_to 'Sign Out', destroy_user_session_path, method: :delete

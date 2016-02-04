@@ -1,0 +1,38 @@
+h1
+  /= 'Cruise type: '
+  = @cruise_type.name
+
+
+- if @cruise_type.scheduled_cruises.count > 0
+
+  h2 = "Scheduled #{@cruise_type.name.pluralize} (#{@cruise_type.scheduled_cruises.count})"
+  
+  table.table.table-min-width
+    tr
+      th Date
+      th Time
+      th Reservations
+    - @cruise_type.scheduled_cruises.each do |c|  
+      tr
+        td = pretty_date c.datetime
+        td = pretty_time c.datetime
+        td = pretty_count c.reservations.count
+
+- else
+  p 
+    strong = "No #{@cruise_type.name.pluralize} are scheduled"
+  
+= link_to "Schedule #{a_or_an @cruise_type.name}", scheduled_cruises_path, class: "btn btn-primary"
+
+hr
+
+table.table.table-condensed.table-min-width.first-col-right
+  tr
+    th Cruise Name
+    td = @cruise_type.name
+  tr
+    th Passenger Capacity
+    td = @cruise_type.capacity
+  tr
+    td
+    td = link_to 'Edit', edit_cruise_type_path(@cruise_type)

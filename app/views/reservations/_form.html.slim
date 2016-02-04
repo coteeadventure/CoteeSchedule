@@ -1,0 +1,43 @@
+/ Editing an existing object
+- if @reservation.id
+  - obj_exists = true
+  - obj_path = reservation_path(@reservation)
+  - obj_method = :patch
+  - obj_button = 'Save Changes'
+/ Creating a new object
+- else
+  - obj_path = reservations_path
+  - obj_method = :post
+  - obj_button = 'Make This Reservation'
+    
+= form_for :reservation, url: obj_path, method: obj_method, html:{class:'form-horizontal'} do |f|
+  
+  = render 'reserve/errors' 
+  
+  = render 'reserve/passengers_form' 
+  
+  hr
+  
+  = render 'reserve/cruise_form' 
+  
+  hr
+  
+  = render 'reserve/customer_form' 
+  
+      
+  div class="row"
+    div class="col-sm-3"
+    div class="col-sm-9"
+        = f.submit obj_button, class: 'btn btn-primary'
+        = ' '
+        
+        - if obj_exists
+          = link_to 'Cancel This Reservation', reservation_path(@reservation),
+                          method: :delete,
+                          data: { confirm: 'Are you sure you want to cancel this reservation?' },
+                          class: 'btn btn-danger'
+          = ' '
+          
+        = link_to 'Go Back', reservation_path(@reservation), class: 'btn btn-link'
+
+br

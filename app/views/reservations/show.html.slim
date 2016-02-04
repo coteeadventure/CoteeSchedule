@@ -1,0 +1,62 @@
+h1 Booked Reservation
+
+div.row
+    
+  table.table.table-min-width.col-lg-3.first-col-right
+    tr
+      th Confirmation Number
+      td = @reservation.confirmation_number
+    tr
+      th Name
+      td = @reservation.name
+    tr
+      th Passengers
+      td = @reservation.passengers_total
+    tr
+      th Phone
+      td = @reservation.phone
+    tr
+      th Email
+      td = @reservation.email
+    tr
+      th Address
+      td = @reservation.address_line_1
+    - if @reservation.coupon_code != ''
+      tr
+        th Coupon Code
+        td = @reservation.coupon_code
+    - if @reservation.additional_information != ''
+      tr
+        th Additional Info
+        td = @reservation.additional_information
+    tr
+      th
+      td = link_to 'Change Reservation', edit_reservation_path(@reservation)
+      
+  div.col-lg-1
+      
+  table.table.table-min-width.col-lg-3
+    tr
+      th = @reservation.scheduled_cruise.cruise_type.name
+    tr
+      td = pretty_datetime @reservation.scheduled_cruise.datetime
+    tr
+      td = pluralize(@reservation.scheduled_cruise.available_seats, 'more seat') + ' available'
+    tr
+      td = link_to 'View This Cruise', scheduled_cruise_path(@reservation.scheduled_cruise)
+      
+  div.col-lg-1
+      
+  table.table.table-min-width.col-lg-3.first-col-right
+    tr
+      th Reservation Made
+      td data-toggle="tooltip" title="#{pretty_datetime @reservation.created_at}" = relative_datetime @reservation.created_at
+    - if @reservation.updated_at > @reservation.created_at
+      tr
+        th Reservation Modified
+        td = relative_datetime @reservation.updated_at
+
+javascript:
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip(); 
+  });

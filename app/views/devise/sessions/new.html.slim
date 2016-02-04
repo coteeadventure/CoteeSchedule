@@ -1,0 +1,25 @@
+h2 Log in to Cotee Adventure
+
+= form_for resource, as: resource_name, url: session_path(resource_name), html:{class:'form-horizontal form-medium'} do |f|
+
+  div.form-group
+    = f.label :email, class: 'col-sm-3 control-label'
+    div.col-sm-9
+      = f.email_field :email, autofocus: true, class: 'form-control'
+
+  div.form-group
+    = f.label :password, class: 'col-sm-3 control-label'
+    div.col-sm-9
+      = f.password_field :password, class: 'form-control'
+    
+  - if devise_mapping.rememberable?
+    div.form-group
+      div.col-sm-3
+      div.col-sm-9
+        = f.check_box :remember_me
+        = ' '
+        = f.label :remember_me
+        br
+        = f.submit 'Log In', class: 'btn btn-primary'
+        br
+        = render 'devise/shared/links'

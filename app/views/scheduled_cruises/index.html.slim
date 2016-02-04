@@ -1,0 +1,22 @@
+h1 Scheduled Cruises (#{@scheduled_cruises.count})
+
+- if @scheduled_cruises.count > 0
+  table.table.table-hover.table-min-width
+    tr
+      th Cruise Name
+      th Date
+      th Time
+      th Reservations
+      th Seats Available
+    - @scheduled_cruises.each do |c|
+      tr onclick="window.location.href = '#{scheduled_cruise_path(c)}'"
+        td = c.cruise_type.name
+        td = pretty_date c.datetime
+        td = pretty_time c.datetime
+        td = pretty_count c.reservations.count
+        td = pretty_count c.available_seats
+- else
+  p
+    strong No cruises have been scheduled
+
+= link_to 'Schedule a Cruise', new_scheduled_cruise_path, class: 'btn btn-primary'

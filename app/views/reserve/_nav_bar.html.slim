@@ -1,0 +1,28 @@
+h1 Reserve Your Cruise
+
+br
+
+ul.nav.nav-wizard
+
+  li class="#{'active' if @wicked_step == :passengers}"
+    /a href="#{wizard_path(:passengers)}"
+    a
+      span.badge 1
+      = ' Passengers'
+      
+  li class="#{'active' if @wicked_step == :cruise}"
+    /a href="#{wizard_path(:cruise)}"
+    a
+      span.badge 2
+      = ' Choose Your Cruise'
+      
+  li class="#{'active' if @wicked_step == :customer}"
+    /a href="#{wizard_path(:customer)}"
+    a
+      span.badge 3
+      = ' Contact Info'
+      
+  li
+    a Confirmation
+
+= render 'errors'

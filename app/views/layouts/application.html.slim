@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title Cotee Scheduler
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+body
+  = render 'shared/navbar'
+  div class="container"
+    - if notice
+      div.notice = notice
+    - if alert
+      div.alert = alert
+    
+    = yield
+  footer.footer
+    p &copy; 2015–2016, Cotee Adventure

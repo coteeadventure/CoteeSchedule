@@ -1,0 +1,18 @@
+h1 Cruise Types (#{@cruise_types.count})
+
+- if @cruise_types.count > 0
+  table.table.table-hover.table-min-width
+		tr
+			th Cruise Name
+			th Cruises Scheduled
+			th Passenger Capacity
+		- @cruise_types.each do |c|
+			tr onclick="window.location.href = '#{cruise_type_path(c)}'"
+				td = c.name
+				td = pretty_count c.scheduled_cruises
+				td = c.capacity
+- else
+  h2 "No cruise types have been defined"
+
+
+= link_to 'Add a Cruise Type', new_cruise_type_path, class: 'btn btn-primary'

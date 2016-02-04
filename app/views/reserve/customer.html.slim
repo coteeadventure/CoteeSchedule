@@ -1,0 +1,7 @@
+= render 'nav_bar'
+
+= form_for @reservation, url: wizard_path, method: :put, html:{class:'form-horizontal form-medium'} do |f|  
+  = render 'customer_form'
+  = render 'next_button'
+  
+= render 'debug'

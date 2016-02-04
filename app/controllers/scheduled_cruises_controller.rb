@@ -1,4 +1,7 @@
 class ScheduledCruisesController < ApplicationController
+  
+  before_action :authenticate_user!
+  
   def index
     @scheduled_cruises = ScheduledCruise.all
   end
@@ -38,7 +41,8 @@ class ScheduledCruisesController < ApplicationController
   
   def destroy
     @scheduled_cruise = ScheduledCruise.find(params[:id])
-    @scheduled_cruise.destroy
+    @scheduled_cruise.status = 'deleted'
+    @scheduled_cruise.save
  
     redirect_to scheduled_cruises_path
   end

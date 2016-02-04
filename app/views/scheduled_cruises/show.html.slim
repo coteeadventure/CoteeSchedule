@@ -1,0 +1,31 @@
+h1
+  = 'Scheduled '
+  = @scheduled_cruise.cruise_type.name
+  
+table.table
+  tr
+    td
+      = pretty_date(@scheduled_cruise.datetime) + ' at ' + pretty_time(@scheduled_cruise.datetime)
+      = ' '
+      = link_to 'Edit', edit_scheduled_cruise_path(@scheduled_cruise)
+  tr
+    td = pluralize(@scheduled_cruise.available_seats, 'more seat') + ' available'
+      
+- if @scheduled_cruise.reservations.count > 0
+
+  h2 Reservations
+  
+  table.table.table-min-width.table-hover
+    tr
+      th Customer Name
+      th Passengers
+    - @scheduled_cruise.reservations.each do |r|
+      tr onclick="window.location.href = '#{reservation_path(r)}'"
+        td = r.name
+        td = r.passengers_total
+
+- else
+  p 
+    strong No reservations have been made for this cruise
+  
+= link_to "Make a Reservation", new_reservation_path, class: "btn btn-primary"

@@ -1,0 +1,6 @@
+h3 Which cruise would you like?
+
+div class="form-group"
+  = label :scheduled_cruise, 'Pick a Cruise', class: 'col-sm-3 control-label'
+  div class="col-sm-9"
+    = render 'shared/collection_radio_group', locals: { object: @reservation, property: :scheduled_cruise_id, collection: ScheduledCruise.available(@reservation.passengers_total), key: :id, value: :description_pretty }

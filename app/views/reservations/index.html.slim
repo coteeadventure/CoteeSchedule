@@ -1,0 +1,23 @@
+h1 Reservations (#{@reservations.count})
+
+- if @reservations.count > 0
+  table.table.table-hover.table-min-width
+		tr
+			th Customer
+			th Passengers
+			th Cruise Name
+			th Date
+			th Time
+		- @reservations.each do |r|
+			tr onclick="window.location.href = '#{reservation_path(r)}'"
+				td = r.name
+				td = r.passengers_total
+				td = r.scheduled_cruise.cruise_type.name
+				td = pretty_date r.scheduled_cruise.datetime
+				td = pretty_time r.scheduled_cruise.datetime
+- else
+  strong No reservations have been made
+  br
+
+
+= link_to 'Make a Reservation', reset_reservation_path, class: 'btn btn-primary'

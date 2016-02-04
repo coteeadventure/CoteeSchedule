@@ -1,13 +1,23 @@
 Rails.application.routes.draw do
   
-   root 'welcome#index'
+  devise_for :users, path: '', path_names: {
+    :sign_in => 'login',
+    :sign_out => 'logout',
+    :sign_up => 'signup'
+  }
+  
+  root 'welcome#index'
+  
+  resources :cruise_types
+  
+  resources :scheduled_cruises
+  
+  resources :reservations
+     
+  get 'reserve/new' => 'reserve#reset', as: 'reset_reservation'
+ 
+  resources :reserve
    
-   resources :cruise_types
-   
-   resources :scheduled_cruises
-   
-   resources :reservations
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
