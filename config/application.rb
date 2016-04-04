@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Form
   class Application < Rails::Application
-    config.action_mailer.default_url_options = { :host => 'coteeadventure.com' }
+    config.action_mailer.default_url_options = { :host => 'coteeadventure.herokuapp.com' }
     
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.perform_deliveries = true
