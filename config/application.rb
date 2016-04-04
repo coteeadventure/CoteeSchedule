@@ -8,6 +8,24 @@ Bundler.require(*Rails.groups)
 
 module Form
   class Application < Rails::Application
+    config.action_mailer.default_url_options = { :host => 'coteeadventure.com' }
+    
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.default :charset => "utf-8"
+
+    config.action_mailer.smtp_settings = {
+      address: "smtp.1and1.com",
+      port: 587,
+      domain: 'coteeadventure.com',
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: 'sendmail@coteeadventure.com',
+      password: 'qgV-GW4-DRk-VCW'
+    }
+
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
